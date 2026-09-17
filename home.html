@@ -1,0 +1,2335 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>E-MBG — Connecting Farms, Nourishing Futures</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    /* =========================
+       ROOT CSS
+    ========================= */
+    :root {
+      --green-950: #123b2b;
+      --green-900: #164b35;
+      --green-800: #1d6445;
+      --green-700: #278354;
+      --green-600: #39a866;
+      --green-500: #61c87e;
+
+      --green-100: #e4f4e8;
+      --green-50: #f1f8f2;
+
+      --cream: #f8faf5;
+      --white: #ffffff;
+      --ink: #173329;
+      --muted: #6e8075;
+      --line: #dce9df;
+
+      --font-body: "DM Sans", sans-serif;
+      --font-heading: "Manrope", sans-serif;
+
+      --radius-sm: 12px;
+      --radius-md: 18px;
+      --radius-lg: 24px;
+
+      --transition: 0.25s ease;
+    }
+
+    /* =========================
+       RESET
+    ========================= */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 80px;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--cream);
+      color: var(--ink);
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    input,
+    select {
+      font: inherit;
+    }
+
+    button,
+    a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    h1,
+    h2,
+    h3 {
+      font-family: var(--font-heading);
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin: 0;
+    }
+
+    .container {
+      width: min(1160px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    .section {
+      padding: 88px 0;
+    }
+
+    .section-light {
+      background: var(--white);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--green-700);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 24px;
+      height: 2px;
+      background: var(--green-500);
+    }
+
+    .section-heading {
+      font-size: clamp(28px, 4vw, 44px);
+      line-height: 1.16;
+      letter-spacing: -0.045em;
+    }
+
+    .muted {
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    /* =========================
+       BUTTONS
+    ========================= */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      border: 1px solid transparent;
+      border-radius: 100px;
+      padding: 13px 21px;
+      font-size: 13px;
+      font-weight: 700;
+      transition: var(--transition);
+    }
+
+    .btn-primary {
+      background: var(--green-800);
+      color: var(--white);
+    }
+
+    .btn-primary:hover {
+      background: var(--green-950);
+      transform: translateY(-2px);
+    }
+
+    .btn-light {
+      background: var(--white);
+      color: var(--green-800);
+      border-color: var(--line);
+    }
+
+    .btn-light:hover {
+      background: var(--green-100);
+      transform: translateY(-2px);
+    }
+
+    /* =========================
+       NAVBAR
+    ========================= */
+    .navbar {
+      position: relative;
+      z-index: 20;
+      padding: 21px 0;
+      background: rgba(248, 250, 245, 0.94);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-heading);
+      font-weight: 800;
+      font-size: 22px;
+      letter-spacing: -0.07em;
+    }
+
+    .logo-mark {
+      width: 36px;
+      height: 36px;
+      background: var(--green-800);
+      color: var(--white);
+      border-radius: 11px;
+      display: grid;
+      place-items: center;
+    }
+
+    .logo-mark svg {
+      width: 23px;
+      height: 23px;
+    }
+
+    .logo em {
+      color: var(--green-600);
+      font-style: normal;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+    }
+
+    .nav-links a {
+      position: relative;
+      padding: 8px 0;
+      color: #718278;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    /* Hover underline setiap menu */
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 100%;
+      bottom: 0;
+      height: 2px;
+      background: var(--green-600);
+      transition: right var(--transition);
+    }
+
+    .nav-links a:hover {
+      color: var(--green-800);
+    }
+
+    .nav-links a:hover::after {
+      right: 0;
+    }
+
+    .menu-toggle {
+      display: none;
+      border: 0;
+      background: transparent;
+      color: var(--green-800);
+      padding: 6px;
+    }
+
+    .menu-toggle svg {
+      width: 24px;
+      height: 24px;
+    }
+
+    .mobile-panel {
+      display: none;
+      padding: 10px 0 16px;
+    }
+
+    .mobile-panel.open {
+      display: grid;
+      gap: 4px;
+    }
+
+    .mobile-panel a {
+      padding: 13px 5px;
+      font-size: 13px;
+      font-weight: 600;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .mobile-panel a:hover {
+      color: var(--green-600);
+    }
+
+    /* =========================
+       HERO SLIDER
+    ========================= */
+    .hero {
+      background: var(--cream);
+    }
+
+    .slide {
+      display: none;
+    }
+
+    .slide.active {
+      display: block;
+      animation: fadeSlide 0.55s ease;
+    }
+
+    @keyframes fadeSlide {
+      from {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 55px;
+      padding: 68px 0 62px;
+      min-height: 510px;
+    }
+
+    .hero h1 {
+      margin: 17px 0 23px;
+      font-size: clamp(38px, 5vw, 65px);
+      line-height: 1.07;
+      letter-spacing: -0.06em;
+      font-weight: 800;
+    }
+
+    .hero h1 span {
+      color: var(--green-600);
+    }
+
+    .hero-copy {
+      max-width: 445px;
+      font-size: 15px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 11px;
+      flex-wrap: wrap;
+      margin-top: 30px;
+    }
+
+    .hero-note {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 20px;
+      color: #819286;
+      font-size: 11px;
+    }
+
+    .hero-note svg {
+      width: 15px;
+      color: var(--green-600);
+    }
+
+    /* Hero visual */
+    .visual {
+      position: relative;
+      min-height: 360px;
+    }
+
+    .orb {
+      position: absolute;
+      inset: 15px 10px 0;
+      border-radius: 50%;
+      background: #e2f1df;
+    }
+
+    .orb::after {
+      content: "";
+      position: absolute;
+      inset: 30px;
+      border: 1px dashed #b4d4b9;
+      border-radius: 50%;
+    }
+
+    .hero-art {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+    }
+
+    .art-emoji {
+      position: relative;
+      z-index: 2;
+      font-size: clamp(115px, 15vw, 175px);
+      filter: drop-shadow(0 25px 24px #1d644520);
+    }
+
+    .float-card {
+      position: absolute;
+      z-index: 4;
+      padding: 13px 15px;
+      background: var(--white);
+      border: 1px solid #e0ece1;
+      border-radius: 14px;
+      box-shadow: 0 12px 30px #1a4a3010;
+      font-size: 11px;
+    }
+
+    .float-card strong {
+      display: block;
+      font-family: var(--font-heading);
+      font-size: 17px;
+      color: var(--green-900);
+    }
+
+    .float-card small {
+      color: #809084;
+      font-size: 10px;
+    }
+
+    .float-one {
+      left: 0;
+      top: 55px;
+    }
+
+    .float-two {
+      right: 0;
+      bottom: 42px;
+    }
+
+    .float-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      color: var(--green-600);
+      font-size: 10px;
+      margin-bottom: 3px;
+    }
+
+    .float-tag i {
+      width: 5px;
+      height: 5px;
+      background: var(--green-500);
+      border-radius: 50%;
+    }
+
+    /* Slider controls */
+    .slider-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+      padding-bottom: 29px;
+    }
+
+    .dots {
+      display: flex;
+      gap: 7px;
+    }
+
+    .dot {
+      width: 25px;
+      height: 4px;
+      padding: 0;
+      border: 0;
+      border-radius: 10px;
+      background: #cddcd0;
+      transition: var(--transition);
+    }
+
+    .dot.active {
+      width: 45px;
+      background: var(--green-700);
+    }
+
+    .slide-count {
+      color: #829286;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .arrows {
+      display: flex;
+      gap: 7px;
+    }
+
+    .arrow {
+      width: 34px;
+      height: 34px;
+      display: grid;
+      place-items: center;
+      border: 1px solid #dce8df;
+      border-radius: 50%;
+      background: var(--white);
+      color: var(--green-800);
+    }
+
+    .arrow:hover {
+      background: var(--green-100);
+    }
+
+    .arrow svg {
+      width: 16px;
+    }
+
+    /* =========================
+       SECTION HEADINGS
+    ========================= */
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 30px;
+      margin-bottom: 42px;
+    }
+
+    .section-head h2 {
+      max-width: 510px;
+      margin-top: 14px;
+    }
+
+    .section-head p {
+      max-width: 340px;
+      font-size: 13px;
+    }
+
+    /* =========================
+       FEATURES
+    ========================= */
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .feature {
+      padding: 29px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-md);
+      background: var(--white);
+      transition: var(--transition);
+    }
+
+    .feature:hover {
+      transform: translateY(-5px);
+      border-color: #a7cfb0;
+      box-shadow: 0 15px 35px #1d64450d;
+    }
+
+    .feature-number {
+      display: block;
+      margin-bottom: 18px;
+      color: #c6d8ca;
+      font-family: var(--font-heading);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .icon-box {
+      width: 45px;
+      height: 45px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 24px;
+      border-radius: 13px;
+      background: var(--green-100);
+      color: var(--green-800);
+    }
+
+    .icon-box svg {
+      width: 23px;
+      height: 23px;
+    }
+
+    .feature h3 {
+      margin-bottom: 12px;
+      font-size: 17px;
+      letter-spacing: -0.025em;
+    }
+
+    .feature p {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.8;
+    }
+
+    /* =========================
+       HOW IT WORKS
+    ========================= */
+    .process {
+      background: var(--green-950);
+      color: var(--white);
+    }
+
+    .process .eyebrow {
+      color: var(--green-500);
+    }
+
+    .process h2 {
+      color: var(--white);
+      max-width: 530px;
+    }
+
+    .process .muted,
+    .process .section-head p {
+      color: #b2cbbb;
+    }
+
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+    }
+
+    .step {
+      padding: 0 23px;
+      border-left: 1px solid #ffffff22;
+    }
+
+    .step:first-child {
+      padding-left: 0;
+      border-left: 0;
+    }
+
+    .step:last-child {
+      padding-right: 0;
+    }
+
+    .step-number {
+      margin-bottom: 35px;
+      color: var(--green-500);
+      font-family: var(--font-heading);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .step-icon {
+      height: 48px;
+      margin-bottom: 24px;
+      color: #8be09b;
+    }
+
+    .step-icon svg {
+      width: 40px;
+      height: 40px;
+    }
+
+    .step h3 {
+      margin-bottom: 13px;
+      font-size: 16px;
+    }
+
+    .step p {
+      color: #a9c3b1;
+      font-size: 12px;
+      line-height: 1.8;
+    }
+
+    /* =========================
+       MARKETPLACE
+    ========================= */
+    .market {
+      background: #f1f7f0;
+    }
+
+    .market-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 55px;
+    }
+
+    .market h2 {
+      margin: 15px 0 18px;
+    }
+
+    .checks {
+      display: grid;
+      gap: 15px;
+      margin-top: 28px;
+    }
+
+    .check {
+      display: flex;
+      align-items: start;
+      gap: 12px;
+      color: #526c5b;
+      font-size: 13px;
+    }
+
+    .check svg {
+      width: 18px;
+      flex-shrink: 0;
+      margin-top: 1px;
+      color: var(--green-600);
+    }
+
+    .market-card {
+      padding: 27px;
+      background: var(--white);
+      border: 1px solid #d5e5d5;
+      border-radius: 20px;
+    }
+
+    .market-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 22px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .market-top span {
+      color: var(--green-700);
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+    .market-top small {
+      color: #91a096;
+      font-size: 10px;
+    }
+
+    .item {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      padding: 17px 0;
+      border-bottom: 1px solid #edf3ed;
+    }
+
+    .item:last-child {
+      padding-bottom: 0;
+      border-bottom: 0;
+    }
+
+    .item-visual {
+      width: 53px;
+      height: 53px;
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+      border-radius: 13px;
+      background: #edf6e9;
+      font-size: 28px;
+    }
+
+    .item-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .item-info strong {
+      display: block;
+      margin-bottom: 5px;
+      font-size: 13px;
+    }
+
+    .item-info small {
+      color: #90a094;
+      font-size: 10px;
+    }
+
+    .item-price {
+      text-align: right;
+    }
+
+    .item-price strong {
+      display: block;
+      color: var(--green-800);
+      font-size: 13px;
+    }
+
+    .item-price small {
+      color: #92a294;
+      font-size: 10px;
+    }
+
+    .status {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      margin-top: 5px;
+      color: var(--green-600);
+      font-size: 9px;
+    }
+
+    .status i {
+      width: 5px;
+      height: 5px;
+      background: var(--green-600);
+      border-radius: 50%;
+    }
+
+    /* =========================
+       BUSINESS MODEL
+    ========================= */
+    .fee {
+      background: var(--white);
+    }
+
+    .fee-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 55px;
+    }
+
+    .fee h2 {
+      margin: 14px 0 18px;
+    }
+
+    .fee-card {
+      position: relative;
+      overflow: hidden;
+      padding: 34px;
+      border-radius: 22px;
+      background: var(--green-950);
+      color: var(--white);
+    }
+
+    .fee-card::after {
+      content: "";
+      position: absolute;
+      top: -80px;
+      right: -95px;
+      width: 230px;
+      height: 230px;
+      border: 1px solid #ffffff12;
+      border-radius: 50%;
+    }
+
+    .fee-card > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .fee-label {
+      margin-bottom: 14px;
+      color: #a7c6b1;
+      font-size: 11px;
+    }
+
+    .fee-amount {
+      margin-bottom: 16px;
+      color: #9be3a7;
+      font-family: var(--font-heading);
+      font-size: 62px;
+      font-weight: 800;
+      line-height: 1;
+      letter-spacing: -0.06em;
+    }
+
+    .fee-amount small {
+      color: #d1e9d4;
+      font-size: 20px;
+      letter-spacing: 0;
+    }
+
+    .fee-card > p {
+      max-width: 310px;
+      color: #b0c9b8;
+      font-size: 12px;
+      line-height: 1.7;
+    }
+
+    .fee-example {
+      display: grid;
+      gap: 10px;
+      margin-top: 27px;
+      padding-top: 21px;
+      border-top: 1px solid #ffffff1c;
+    }
+
+    .fee-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      color: #b6cebc;
+      font-size: 12px;
+    }
+
+    .fee-row strong {
+      color: var(--white);
+      font-weight: 700;
+    }
+
+    .fee-row.total {
+      margin-top: 4px;
+      padding-top: 12px;
+      border-top: 1px dashed #ffffff25;
+    }
+
+    .fee-row.total strong {
+      color: #9be3a7;
+      font-size: 15px;
+    }
+
+    /* =========================
+       CTA
+    ========================= */
+    .cta {
+      padding: 78px 0;
+      background: var(--green-100);
+    }
+
+    .cta-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 30px;
+    }
+
+    .cta h2 {
+      max-width: 580px;
+      font-size: clamp(27px, 4vw, 42px);
+    }
+
+    .cta p {
+      max-width: 460px;
+      margin-top: 14px;
+      color: #64816e;
+      font-size: 13px;
+      line-height: 1.8;
+    }
+
+    /* =========================
+       FOOTER
+    ========================= */
+    .footer {
+      padding: 35px 0;
+      background: var(--green-950);
+      color: #a9c5b2;
+    }
+
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .footer .logo {
+      color: var(--white);
+      font-size: 18px;
+    }
+
+    .footer .logo-mark {
+      width: 30px;
+      height: 30px;
+      border-radius: 9px;
+    }
+
+    .footer .logo-mark svg {
+      width: 19px;
+      height: 19px;
+    }
+
+    .footer small {
+      font-size: 11px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 20px;
+      font-size: 11px;
+    }
+
+    .footer-links a:hover {
+      color: #9be3a7;
+    }
+
+    /* =========================
+       MODAL FORM
+    ========================= */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 100;
+      inset: 0;
+      align-items: center;
+      justify-content: center;
+      padding: 30px 20px;
+      background: #123b2bdd;
+    }
+
+    .modal.open {
+      display: flex;
+    }
+
+    .modal-card {
+      position: relative;
+      width: min(420px, 100%);
+      padding: 30px;
+      background: var(--white);
+      border-radius: 20px;
+    }
+
+    .modal-card h3 {
+      margin-bottom: 10px;
+      font-size: 24px;
+    }
+
+    .modal-card > p {
+      margin-bottom: 20px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      width: 30px;
+      height: 30px;
+      border: 0;
+      border-radius: 50%;
+      background: #eef5ef;
+      color: var(--green-800);
+    }
+
+    .modal-form {
+      display: grid;
+      gap: 12px;
+    }
+
+    .modal-form label {
+      display: grid;
+      gap: 6px;
+      color: #526c5b;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .modal-form input,
+    .modal-form select {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      outline-color: var(--green-500);
+      background: #f9fcf9;
+      font-size: 13px;
+    }
+
+    .modal-form .btn {
+      margin-top: 5px;
+    }
+
+    .toast {
+      display: none;
+      margin-top: 14px;
+      padding: 12px;
+      border-radius: 10px;
+      background: var(--green-100);
+      color: var(--green-900);
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+    .toast.show {
+      display: block;
+    }
+
+    /* =========================
+       RESPONSIVE TABLET
+    ========================= */
+    @media (max-width: 800px) {
+      .nav-links,
+      .navbar > .container > .nav-inner > .btn {
+        display: none;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+
+      .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+        padding: 48px 0 30px;
+      }
+
+      .hero h1 {
+        max-width: 500px;
+        font-size: clamp(39px, 9vw, 56px);
+      }
+
+      .visual {
+        width: 100%;
+        max-width: 500px;
+        min-height: 310px;
+        margin: 0 auto;
+      }
+
+      .orb {
+        inset: 15px 25px 0;
+      }
+
+      .art-emoji {
+        font-size: 140px;
+      }
+
+      .section {
+        padding: 60px 0;
+      }
+
+      .section-head {
+        display: block;
+        margin-bottom: 30px;
+      }
+
+      .section-head p {
+        margin-top: 17px;
+      }
+
+      .feature-grid {
+        grid-template-columns: 1fr;
+        gap: 13px;
+      }
+
+      .feature {
+        padding: 24px;
+      }
+
+      .process-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 35px 15px;
+      }
+
+      .step {
+        padding: 0 0 0 15px;
+      }
+
+      .step:nth-child(odd) {
+        padding-left: 0;
+        border-left: 0;
+      }
+
+      .step-number {
+        margin-bottom: 20px;
+      }
+
+      .market-layout,
+      .fee-layout {
+        grid-template-columns: 1fr;
+        gap: 35px;
+      }
+
+      .cta-inner {
+        display: block;
+      }
+
+      .cta .btn {
+        margin-top: 25px;
+      }
+
+      .footer-inner {
+        display: grid;
+        gap: 18px;
+      }
+    }
+
+    /* =========================
+       RESPONSIVE MOBILE
+    ========================= */
+    @media (max-width: 400px) {
+      .container {
+        width: calc(100% - 28px);
+      }
+
+      .hero-actions .btn {
+        flex: 1;
+        padding: 12px 13px;
+        font-size: 12px;
+      }
+
+      .visual {
+        min-height: 270px;
+      }
+
+      .art-emoji {
+        font-size: 110px;
+      }
+
+      .float-card {
+        padding: 10px;
+      }
+
+      .float-card strong {
+        font-size: 14px;
+      }
+
+      .float-one {
+        top: 25px;
+      }
+
+      .float-two {
+        bottom: 20px;
+      }
+
+      .process-grid {
+        grid-template-columns: 1fr;
+        gap: 25px;
+      }
+
+      .step,
+      .step:nth-child(odd) {
+        padding: 0 0 0 15px;
+        border-left: 1px solid #ffffff22;
+      }
+
+      .fee-card {
+        padding: 25px;
+      }
+
+      .fee-amount {
+        font-size: 52px;
+      }
+
+      .footer-links {
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+
+      html {
+        scroll-behavior: auto;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- =========================
+       NAVBAR
+  ========================= -->
+  <header class="navbar">
+    <div class="container">
+      <div class="nav-inner">
+
+        <a href="#home" class="logo" aria-label="E-MBG Home">
+          <span class="logo-mark">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 21V9M12 13c-6 0-8-4-8-8 5 0 8 3 8 8Zm0-3c0-5 3-8 8-8 0 5-3 8-8 8Z"/>
+              <path d="M4 21h16"/>
+            </svg>
+          </span>
+          E-<em>MBG</em>
+        </a>
+
+        <nav class="nav-links" aria-label="Main navigation">
+          <a href="#home">Home</a>
+          <a href="#about">Tentang Kami</a>
+          <a href="#how">Cara Kerja</a>
+          <a href="#fee">Model Bisnis</a>
+        </nav>
+
+        <a href="#join" class="btn btn-primary">
+          Mulai Bergabung <span>↗</span>
+        </a>
+
+        <button class="menu-toggle" id="menuToggle" aria-label="Buka menu" aria-expanded="false">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <path d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+        </button>
+
+      </div>
+
+      <div class="mobile-panel" id="mobilePanel">
+        <a href="#home">Home</a>
+        <a href="#about">Tentang Kami</a>
+        <a href="#how">Cara Kerja</a>
+        <a href="#fee">Model Bisnis</a>
+        <a href="#join">Mulai Bergabung ↗</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- =========================
+       HERO SLIDER
+  ========================= -->
+  <main id="home">
+
+    <section class="hero" aria-label="Hero slider">
+      <div class="container">
+
+        <!-- SLIDE 1 -->
+        <div class="slide active" data-slide="0">
+          <div class="hero-grid">
+
+            <div>
+              <div class="eyebrow">Fresh Supply. Better Future.</div>
+
+              <h1>
+                Fresh from<br>
+                the <span>Farm.</span><br>
+                Ready for MBG.
+              </h1>
+
+              <p class="muted hero-copy">
+                Menghubungkan petani lokal dengan SPPG di sekitar
+                untuk menciptakan rantai pasok pangan yang lebih
+                segar, efisien, dan berkelanjutan.
+              </p>
+
+              <div class="hero-actions">
+                <a href="#join" class="btn btn-primary">
+                  Gabung Sekarang ↗
+                </a>
+
+                <a href="#how" class="btn btn-light">
+                  Pelajari Cara Kerja
+                </a>
+              </div>
+
+              <div class="hero-note">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="m5 12 4 4L19 6"/>
+                </svg>
+                Platform digital untuk petani & SPPG lokal
+              </div>
+            </div>
+
+            <div class="visual">
+              <div class="orb"></div>
+
+              <div class="hero-art">
+                <div class="art-emoji">🥬</div>
+              </div>
+
+              <div class="float-card float-one">
+                <div class="float-tag">
+                  <i></i> Local Produce
+                </div>
+                <strong>Fresh Daily</strong>
+                <small>From local farmers</small>
+              </div>
+
+              <div class="float-card float-two">
+                <div class="float-tag">
+                  <i></i> E-MBG Network
+                </div>
+                <strong>Farm → SPPG</strong>
+                <small>Connected & transparent</small>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- SLIDE 2 -->
+        <div class="slide" data-slide="1">
+          <div class="hero-grid">
+
+            <div>
+              <div class="eyebrow">From Local Hands</div>
+
+              <h1>
+                Petani Lokal.<br>
+                <span>Pangan Segar.</span><br>
+                Dampak Nyata.
+              </h1>
+
+              <p class="muted hero-copy">
+                Setiap hasil panen punya kesempatan untuk sampai
+                ke dapur SPPG terdekat. E-MBG hadir untuk
+                mempertemukan keduanya.
+              </p>
+
+              <div class="hero-actions">
+                <a href="#about" class="btn btn-primary">
+                  Kenali E-MBG ↗
+                </a>
+
+                <a href="#join" class="btn btn-light">
+                  Jadi Mitra
+                </a>
+              </div>
+
+              <div class="hero-note">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="m5 12 4 4L19 6"/>
+                </svg>
+                Mendukung ekosistem pangan lokal
+              </div>
+            </div>
+
+            <div class="visual">
+              <div class="orb"></div>
+
+              <div class="hero-art">
+                <div class="art-emoji">🌾</div>
+              </div>
+
+              <div class="float-card float-one">
+                <div class="float-tag">
+                  <i></i> Local Farmers
+                </div>
+                <strong>Direct Access</strong>
+                <small>Reach nearby SPPG</small>
+              </div>
+
+              <div class="float-card float-two">
+                <div class="float-tag">
+                  <i></i> More Opportunities
+                </div>
+                <strong>Grow Together</strong>
+                <small>For every harvest</small>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- SLIDE 3 -->
+        <div class="slide" data-slide="2">
+          <div class="hero-grid">
+
+            <div>
+              <div class="eyebrow">Smarter Food Supply</div>
+
+              <h1>
+                One Platform.<br>
+                <span>Many Harvests.</span><br>
+                One Purpose.
+              </h1>
+
+              <p class="muted hero-copy">
+                Memudahkan SPPG menemukan kebutuhan bahan pangan,
+                dan membantu petani menjangkau permintaan
+                dengan proses transaksi yang lebih terstruktur.
+              </p>
+
+              <div class="hero-actions">
+                <a href="#how" class="btn btn-primary">
+                  Lihat Cara Kerja ↗
+                </a>
+
+                <a href="#fee" class="btn btn-light">
+                  Model Bisnis
+                </a>
+              </div>
+
+              <div class="hero-note">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="m5 12 4 4L19 6"/>
+                </svg>
+                Simple. Transparent. Connected.
+              </div>
+            </div>
+
+            <div class="visual">
+              <div class="orb"></div>
+
+              <div class="hero-art">
+                <div class="art-emoji">🤝</div>
+              </div>
+
+              <div class="float-card float-one">
+                <div class="float-tag">
+                  <i></i> Digital Network
+                </div>
+                <strong>Easy to Connect</strong>
+                <small>Farmers & SPPG</small>
+              </div>
+
+              <div class="float-card float-two">
+                <div class="float-tag">
+                  <i></i> Every Transaction
+                </div>
+                <strong>5% Fee</strong>
+                <small>Simple business model</small>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- SLIDER CONTROLS -->
+        <div class="slider-footer">
+
+          <div class="dots" role="group" aria-label="Pilih slide">
+            <button class="dot active" data-go="0" aria-label="Slide 1"></button>
+            <button class="dot" data-go="1" aria-label="Slide 2"></button>
+            <button class="dot" data-go="2" aria-label="Slide 3"></button>
+          </div>
+
+          <div class="slide-count" id="slideCount">
+            01 / 03
+          </div>
+
+          <div class="arrows">
+            <button class="arrow" id="prev" aria-label="Slide sebelumnya">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="m15 18-6-6 6-6"/>
+              </svg>
+            </button>
+
+            <button class="arrow" id="next" aria-label="Slide berikutnya">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="m9 18 6-6-6-6"/>
+              </svg>
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =========================
+         ABOUT / FEATURES
+    ========================= -->
+    <section class="section section-light" id="about">
+      <div class="container">
+
+        <div class="section-head">
+          <div>
+            <div class="eyebrow">Why E-MBG?</div>
+
+            <h2 class="section-heading">
+              Rantai pasok yang<br>
+              lebih dekat, lebih baik.
+            </h2>
+          </div>
+
+          <p class="muted">
+            Kami membangun koneksi antara sumber pangan lokal
+            dan kebutuhan SPPG melalui platform digital
+            yang sederhana.
+          </p>
+        </div>
+
+        <div class="feature-grid">
+
+          <article class="feature">
+            <span class="feature-number">01 /</span>
+
+            <div class="icon-box">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 21V9M12 13c-6 0-8-4-8-8 5 0 8 3 8 8Zm0-3c0-5 3-8 8-8 0 5-3 8-8 8Z"/>
+              </svg>
+            </div>
+
+            <h3>Local & Fresh</h3>
+
+            <p>
+              Membantu SPPG mengakses bahan pangan
+              dari petani dan perkebunan lokal di sekitar.
+            </p>
+          </article>
+
+          <article class="feature">
+            <span class="feature-number">02 /</span>
+
+            <div class="icon-box">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 12h16M12 4l8 8-8 8"/>
+              </svg>
+            </div>
+
+            <h3>Simple Connection</h3>
+
+            <p>
+              Mempertemukan supplier dan pembeli
+              dalam satu platform agar proses pengadaan
+              lebih terstruktur.
+            </p>
+          </article>
+
+          <article class="feature">
+            <span class="feature-number">03 /</span>
+
+            <div class="icon-box">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="5" width="18" height="14" rx="2"/>
+                <path d="M7 15h4M7 9h10M7 12h6"/>
+              </svg>
+            </div>
+
+            <h3>Transparent Transactions</h3>
+
+            <p>
+              Mendukung pencatatan transaksi dan
+              biaya layanan yang jelas antara petani
+              dan SPPG.
+            </p>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =========================
+         HOW IT WORKS
+    ========================= -->
+    <section class="section process" id="how">
+      <div class="container">
+
+        <div class="section-head">
+          <div>
+            <div class="eyebrow">How It Works</div>
+
+            <h2 class="section-heading">
+              From harvest<br>
+              to healthy meals.
+            </h2>
+          </div>
+
+          <p class="muted">
+            Empat langkah untuk menghubungkan hasil panen
+            lokal dengan kebutuhan SPPG.
+          </p>
+        </div>
+
+        <div class="process-grid">
+
+          <article class="step">
+            <div class="step-number">01</div>
+
+            <div class="step-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 21V9M12 13c-6 0-8-4-8-8 5 0 8 3 8 8Zm0-3c0-5 3-8 8-8 0 5-3 8-8 8Z"/>
+                <path d="M4 21h16"/>
+              </svg>
+            </div>
+
+            <h3>Petani Bergabung</h3>
+
+            <p>
+              Petani mendaftarkan diri dan menampilkan
+              hasil panen yang tersedia.
+            </p>
+          </article>
+
+          <article class="step">
+            <div class="step-number">02</div>
+
+            <div class="step-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 21h18M5 21V9l7-5 7 5v12M9 21v-6h6v6M8 10h.01M12 10h.01M16 10h.01"/>
+              </svg>
+            </div>
+
+            <h3>SPPG Mencari</h3>
+
+            <p>
+              SPPG melihat daftar komoditas dan
+              kebutuhan bahan pangan lokal.
+            </p>
+          </article>
+
+          <article class="step">
+            <div class="step-number">03</div>
+
+            <div class="step-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 7h18v13H3zM3 7l3-4h12l3 4M8 12h8M12 12v5M8 17h8"/>
+              </svg>
+            </div>
+
+            <h3>Transaksi Terjadi</h3>
+
+            <p>
+              SPPG melakukan pemesanan sesuai
+              ketersediaan dan kesepakatan.
+            </p>
+          </article>
+
+          <article class="step">
+            <div class="step-number">04</div>
+
+            <div class="step-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 3v18M3 12h18M5 5l14 14M19 5 5 19"/>
+              </svg>
+            </div>
+
+            <h3>Fresh Supply</h3>
+
+            <p>
+              Bahan pangan dikirim untuk mendukung
+              kebutuhan dapur SPPG.
+            </p>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =========================
+         MARKETPLACE
+    ========================= -->
+    <section class="section market">
+      <div class="container">
+
+        <div class="market-layout">
+
+          <div>
+            <div class="eyebrow">Local Marketplace</div>
+
+            <h2 class="section-heading">
+              Hasil panen lokal,<br>
+              di satu tempat.
+            </h2>
+
+            <p class="muted">
+              E-MBG memudahkan SPPG menemukan komoditas
+              pangan dari petani lokal. Mulai dari sayuran
+              hingga hasil perkebunan.
+            </p>
+
+            <div class="checks">
+
+              <div class="check">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="m5 12 4 4L19 6"/>
+                </svg>
+                <span>Daftar komoditas dan ketersediaan panen</span>
+              </div>
+
+              <div class="check">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="m5 12 4 4L19 6"/>
+                </svg>
+                <span>Informasi harga dan volume pesanan</span>
+              </div>
+
+              <div class="check">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="m5 12 4 4L19 6"/>
+                </svg>
+                <span>Koneksi langsung dengan supplier lokal</span>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="market-card">
+
+            <div class="market-top">
+              <span>AVAILABLE PRODUCE</span>
+              <small>Illustrative data</small>
+            </div>
+
+            <div class="item">
+              <div class="item-visual">🥬</div>
+
+              <div class="item-info">
+                <strong>Sawi Hijau</strong>
+                <small>Fresh leafy greens</small>
+
+                <div class="status">
+                  <i></i> Available
+                </div>
+              </div>
+
+              <div class="item-price">
+                <strong>Rp10.000</strong>
+                <small>/ kg</small>
+              </div>
+            </div>
+
+            <div class="item">
+              <div class="item-visual">🌽</div>
+
+              <div class="item-info">
+                <strong>Jagung</strong>
+                <small>Local harvest</small>
+
+                <div class="status">
+                  <i></i> Available
+                </div>
+              </div>
+
+              <div class="item-price">
+                <strong>Rp8.000</strong>
+                <small>/ kg</small>
+              </div>
+            </div>
+
+            <div class="item">
+              <div class="item-visual">🥗</div>
+
+              <div class="item-info">
+                <strong>Kangkung</strong>
+                <small>Fresh vegetables</small>
+
+                <div class="status">
+                  <i></i> Available
+                </div>
+              </div>
+
+              <div class="item-price">
+                <strong>Rp7.000</strong>
+                <small>/ kg</small>
+              </div>
+            </div>
+
+            <div class="item">
+              <div class="item-visual">🌿</div>
+
+              <div class="item-info">
+                <strong>Bayam</strong>
+                <small>Local produce</small>
+
+                <div class="status">
+                  <i></i> Available
+                </div>
+              </div>
+
+              <div class="item-price">
+                <strong>Rp9.000</strong>
+                <small>/ kg</small>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =========================
+         BUSINESS MODEL
+    ========================= -->
+    <section class="section fee" id="fee">
+      <div class="container">
+
+        <div class="fee-layout">
+
+          <div>
+            <div class="eyebrow">Business Model</div>
+
+            <h2 class="section-heading">
+              Simple model.<br>
+              Scalable impact.
+            </h2>
+
+            <p class="muted">
+              E-MBG mendapatkan pendapatan melalui
+              transaction fee dari setiap transaksi
+              yang terjadi antara petani dan SPPG
+              di platform.
+            </p>
+
+            <div class="checks">
+
+              <div class="check">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="m5 12 4 4L19 6"/>
+                </svg>
+                <span>Biaya layanan sebesar 5% per item transaksi</span>
+              </div>
+
+              <div class="check">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="m5 12 4 4L19 6"/>
+                </svg>
+                <span>Pendapatan sejalan dengan aktivitas marketplace</span>
+              </div>
+
+              <div class="check">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="m5 12 4 4L19 6"/>
+                </svg>
+                <span>Platform dibangun in-house dengan biaya pengembangan awal Rp0</span>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="fee-card">
+
+            <div class="fee-label">
+              TRANSACTION FEE
+            </div>
+
+            <div class="fee-amount">
+              5<small>%</small>
+            </div>
+
+            <p>
+              Ilustrasi biaya layanan E-MBG dari
+              setiap item yang ditransaksikan
+              melalui platform.
+            </p>
+
+            <div class="fee-example">
+
+              <div class="fee-row">
+                <span>Harga sawi / kg</span>
+                <strong>Rp10.000</strong>
+              </div>
+
+              <div class="fee-row">
+                <span>Volume pembelian</span>
+                <strong>500 kg</strong>
+              </div>
+
+              <div class="fee-row">
+                <span>Total transaksi</span>
+                <strong>Rp5.000.000</strong>
+              </div>
+
+              <div class="fee-row total">
+                <span>Fee E-MBG (5%)</span>
+                <strong>Rp250.000</strong>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =========================
+         CTA
+    ========================= -->
+    <section class="cta" id="join">
+      <div class="container">
+
+        <div class="cta-inner">
+
+          <div>
+            <div class="eyebrow">
+              Build The Future Of Food Supply
+            </div>
+
+            <h2>
+              Let's connect local farms<br>
+              with SPPG.
+            </h2>
+
+            <p>
+              Jadilah bagian dari ekosistem pangan lokal
+              yang lebih terhubung dan berkelanjutan
+              bersama E-MBG.
+            </p>
+          </div>
+
+          <button class="btn btn-primary" id="openModal">
+            Daftar Sebagai Mitra ↗
+          </button>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- =========================
+       FOOTER
+  ========================= -->
+  <footer class="footer">
+    <div class="container">
+
+      <div class="footer-inner">
+
+        <a href="#home" class="logo">
+          <span class="logo-mark">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 21V9M12 13c-6 0-8-4-8-8 5 0 8 3 8 8Zm0-3c0-5 3-8 8-8 0 5-3 8-8 8Z"/>
+              <path d="M4 21h16"/>
+            </svg>
+          </span>
+          E-<em>MBG</em>
+        </a>
+
+        <small>
+          © 2026 E-MBG. Connecting farms, nourishing futures.
+        </small>
+
+        <div class="footer-links">
+          <a href="#about">About</a>
+          <a href="#how">How It Works</a>
+          <a href="#fee">Business Model</a>
+        </div>
+
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- =========================
+       MODAL FORM
+  ========================= -->
+  <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+
+    <div class="modal-card">
+
+      <button class="modal-close" id="closeModal" aria-label="Tutup">
+        ✕
+      </button>
+
+      <h3 id="modalTitle">Gabung E-MBG</h3>
+
+      <p>
+        Isi data berikut untuk simulasi pendaftaran mitra.
+        Form ini belum terhubung ke database.
+      </p>
+
+      <form class="modal-form" id="partnerForm">
+
+        <label>
+          Nama / Nama Usaha
+          <input
+            required
+            name="name"
+            placeholder="Contoh: Kelompok Tani Sejahtera"
+          >
+        </label>
+
+        <label>
+          Anda ingin bergabung sebagai
+          <select name="role" required>
+            <option value="">Pilih peran...</option>
+            <option>Petani / Supplier</option>
+            <option>SPPG / Pembeli</option>
+            <option>Mitra / Lainnya</option>
+          </select>
+        </label>
+
+        <label>
+          Nomor WhatsApp
+          <input
+            required
+            name="phone"
+            type="tel"
+            placeholder="08xxxxxxxxxx"
+          >
+        </label>
+
+        <button class="btn btn-primary" type="submit">
+          Kirim Pendaftaran ↗
+        </button>
+
+      </form>
+
+      <div class="toast" id="toast" role="status"></div>
+
+    </div>
+
+  </div>
+
+  <!-- =========================
+       JAVASCRIPT
+  ========================= -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+
+      /* =========================
+         MOBILE NAVIGATION
+      ========================= */
+
+      const menuToggle = document.getElementById("menuToggle");
+      const mobilePanel = document.getElementById("mobilePanel");
+
+      menuToggle.addEventListener("click", () => {
+        const isOpen = mobilePanel.classList.toggle("open");
+
+        menuToggle.setAttribute(
+          "aria-expanded",
+          String(isOpen)
+        );
+      });
+
+      mobilePanel.querySelectorAll("a").forEach(link => {
+        link.addEventListener("click", () => {
+          mobilePanel.classList.remove("open");
+
+          menuToggle.setAttribute(
+            "aria-expanded",
+            "false"
+          );
+        });
+      });
+
+
+      /* =========================
+         HERO SLIDER
+      ========================= */
+
+      const slides = Array.from(
+        document.querySelectorAll(".slide")
+      );
+
+      const dots = Array.from(
+        document.querySelectorAll(".dot")
+      );
+
+      const slideCount = document.getElementById("slideCount");
+
+      const prevButton = document.getElementById("prev");
+      const nextButton = document.getElementById("next");
+
+      let currentSlide = 0;
+      let autoSlideTimer;
+      let isPaused = false;
+
+      function showSlide(index) {
+
+        currentSlide =
+          (index + slides.length) % slides.length;
+
+        slides.forEach((slide, i) => {
+          slide.classList.toggle(
+            "active",
+            i === currentSlide
+          );
+        });
+
+        dots.forEach((dot, i) => {
+          dot.classList.toggle(
+            "active",
+            i === currentSlide
+          );
+
+          dot.setAttribute(
+            "aria-current",
+            i === currentSlide ? "true" : "false"
+          );
+        });
+
+        slideCount.textContent =
+          `0${currentSlide + 1} / 0${slides.length}`;
+      }
+
+      function restartAutoSlide() {
+
+        clearInterval(autoSlideTimer);
+
+        autoSlideTimer = setInterval(() => {
+
+          if (!isPaused) {
+            showSlide(currentSlide + 1);
+          }
+
+        }, 6500);
+      }
+
+      prevButton.addEventListener("click", () => {
+        showSlide(currentSlide - 1);
+        restartAutoSlide();
+      });
+
+      nextButton.addEventListener("click", () => {
+        showSlide(currentSlide + 1);
+        restartAutoSlide();
+      });
+
+      dots.forEach(dot => {
+
+        dot.addEventListener("click", () => {
+
+          showSlide(
+            Number(dot.dataset.go)
+          );
+
+          restartAutoSlide();
+
+        });
+
+      });
+
+      const hero = document.querySelector(".hero");
+
+      hero.addEventListener("mouseenter", () => {
+        isPaused = true;
+      });
+
+      hero.addEventListener("mouseleave", () => {
+        isPaused = false;
+      });
+
+      hero.addEventListener("focusin", () => {
+        isPaused = true;
+      });
+
+      hero.addEventListener("focusout", () => {
+        isPaused = false;
+      });
+
+      showSlide(0);
+      restartAutoSlide();
+
+
+      /* =========================
+         MODAL
+      ========================= */
+
+      const modal = document.getElementById("modal");
+      const openModal = document.getElementById("openModal");
+      const closeModal = document.getElementById("closeModal");
+
+      const form = document.getElementById("partnerForm");
+      const toast = document.getElementById("toast");
+
+      function setModal(open) {
+
+        modal.classList.toggle("open", open);
+
+        if (open) {
+
+          toast.classList.remove("show");
+
+          form.reset();
+
+          form.elements.name.focus();
+
+        } else {
+
+          openModal.focus();
+
+        }
+
+      }
+
+      openModal.addEventListener("click", () => {
+        setModal(true);
+      });
+
+      closeModal.addEventListener("click", () => {
+        setModal(false);
+      });
+
+      modal.addEventListener("click", event => {
+
+        if (event.target === modal) {
+          setModal(false);
+        }
+
+      });
+
+      document.addEventListener("keydown", event => {
+
+        if (
+          event.key === "Escape" &&
+          modal.classList.contains("open")
+        ) {
+          setModal(false);
+        }
+
+      });
+
+
+      /* =========================
+         FORM SUBMIT DEMO
+      ========================= */
+
+      form.addEventListener("submit", event => {
+
+        event.preventDefault();
+
+        const name =
+          form.elements.name.value.trim();
+
+        const role =
+          form.elements.role.value;
+
+        toast.textContent =
+          `Terima kasih, ${name}! ` +
+          `Pendaftaran simulasi sebagai ${role} ` +
+          `sudah diterima. Hubungkan form ini ` +
+          `ke backend untuk menyimpan data mitra.`;
+
+        toast.classList.add("show");
+
+        form.reset();
+
+      });
+
+
+      /* =========================
+         SMOOTH SCROLL
+      ========================= */
+
+      document.querySelectorAll('a[href^="#"]').forEach(link => {
+
+        link.addEventListener("click", event => {
+
+          const target = document.querySelector(
+            link.getAttribute("href")
+          );
+
+          if (target) {
+
+            event.preventDefault();
+
+            target.scrollIntoView({
+              behavior: "smooth",
+              block: "start"
+            });
+
+          }
+
+        });
+
+      });
+
+    });
+  </script>
+
+</body>
+</html>
